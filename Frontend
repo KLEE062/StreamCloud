@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamCloud Music</title>
+
+```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0f172a;
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #1e293b;
+        padding: 20px;
+        font-size: 24px;
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+
+    .song {
+        background: #1e293b;
+        margin: 15px auto;
+        padding: 15px;
+        width: 300px;
+        border-radius: 10px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        background: #22c55e;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #16a34a;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+    🎵 StreamCloud Music
+</header>
+
+<div class="container">
+
+```
+<div class="song">
+    <h3>Sample Song 1</h3>
+    <audio id="audio1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <br>
+    <button onclick="playAudio('audio1')">Play</button>
+    <button onclick="pauseAudio('audio1')">Pause</button>
+</div>
+
+<div class="song">
+    <h3>Sample Song 2</h3>
+    <audio id="audio2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+    <br>
+    <button onclick="playAudio('audio2')">Play</button>
+    <button onclick="pauseAudio('audio2')">Pause</button>
+</div>
+```
+
+</div>
+
+<script>
+    function playAudio(id) {
+        document.getElementById(id).play();
+    }
+
+    function pauseAudio(id) {
+        document.getElementById(id).pause();
+    }
+</script>
+
+</body>
+</html>
