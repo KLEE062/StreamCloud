@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Clone - Music Streaming</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/player.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Spotify Clone</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="playlist.html">Playlists</a></li>
+            <li id="auth-link"><a href="login.html">Login</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <h1>Trending Songs</h1>
+        <div id="songs-list" class="songs-grid"></div>
+    </div>
+    
+    <div class="player">
+        <div class="song-info">
+            <span id="current-song">Select a song</span>
+        </div>
+        <audio id="audio" controls></audio>
+        <div class="controls">
+            <button onclick="prevSong()">⏮</button>
+            <button onclick="playPause()">⏯</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+    </div>
+    
+    <script src="../js/api.js"></script>
+    <script src="../js/player.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html> 
