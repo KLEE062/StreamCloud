@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "plan": { "type": "string", "enum": ["none", "trial", "daily", "weekly", "monthly", "annual"] },
+            "status": { "type": "string", "enum": ["active", "expired", "canceled"] },
+            "expiryDate": { "type": "string", "format": "date-time" }
+          }
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "Song": {
+      "title": "Song",
+      "description": "A music track",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "artist": { "type": "string" },
+        "artistId": { "type": "string" },
+        "album": { "type": "string" },
+        "albumId": { "type": "string" },
+        "duration": { "type": "number", "description": "Duration in seconds" },
+        "audioUrl": { "type": "string", "format": "uri" },
+        "coverUrl": { "type": "string", "format": "uri" },
+        "genre": { "type": "string" },
+        "plays": { "type": "number" },
+        "ownerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "artist", "audioUrl", "ownerId"]
+    },
+    "Artist": {
+      "title": "Artist",
+      "description": "A music artist",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "bio": { "type": "string" },
+        "imageUrl": { "type": "string", "format": "uri" },
+        "isVerified": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name"]
+    },
+    "Album": {
+      "title": "Album",
+      "description": "A collection of songs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "artist": { "type": "string" },
+        "artistId": { "type": "string" },
+        "coverUrl": { "type": "string", "format": "uri" },
+        "releaseYear": { "type": "number" },
+        "songIds": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "artist", "artistId"]
+    },
+    "Playlist": {
+      "title": "Playlist",
+      "description": "A user-created collection of songs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "songIds": { "type": "array", "items": { "type": "string" } },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "ownerId"]
+    },
+    "VerificationToken": {
+      "title": "VerificationToken",
+      "description": "6-digit verification token for email confirmation",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "token": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "token", "expiresAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["system", "subscription", "playlist", "social"] },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "message", "type", "isRead", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notifications"
+    },
+    "/songs/{songId}": {
+      "schema": "Song",
+      "description": "Music tracks"
+    },
+    "/artists/{artistId}": {
+      "schema": "Artist",
+      "description": "Music artists"
+    },
+    "/albums/{albumId}": {
+      "schema": "Album",
+      "description": "Music albums"
+    },
+    "/playlists/{playlistId}": {
+      "schema": "Playlist",
+      "description": "User playlists"
+    },
+    "/verification_tokens/{email}": {
+      "schema": "VerificationToken",
+      "description": "Email verification tokens"
+    }
+  }
+}
